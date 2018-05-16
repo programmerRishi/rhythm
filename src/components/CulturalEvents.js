@@ -18,15 +18,15 @@ class CulturalEvents extends Component {
 
   renderEvent = ({ item }) => {
     return (
-          <TouchableOpacity
-            onPress={
-              () => this.props.navigation.navigate('culturalDetails')
-            }
-          >
-            <Card containerStyle={styles.containerStyle}>
-              <Text style={styles.textStyle}>{item.eventName}</Text>
-            </Card>
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={
+            () => this.props.navigation.navigate('culturalDetails')
+          }
+        >
+          <Card containerStyle={styles.containerStyle}>
+            <Text style={styles.textStyle}>{item.eventName}</Text>
+          </Card>
+        </TouchableOpacity>
     );
   }
 

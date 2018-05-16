@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { HomeContent } from '../components';
 
 class Home extends Component {
   static navigationOptions = ({ navigation }) => (
@@ -28,19 +29,11 @@ class Home extends Component {
   )
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Home</Text>
-      </View>
+        <HomeContent />
           );
         }
       }
 const styles = {
-        container: {
-          flex: 1,
-          backgroundColor: '#DEDEDE',
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
         headerLeftStyle: {
           color: '#fff',
           fontSize: 30,

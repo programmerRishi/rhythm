@@ -6,17 +6,23 @@ const cardTitle = [
   {
     key: '1',
     title: 'Our Story',
-    iconSource: require('../../assets/story.png')
+    iconSource: require('../../assets/story.png'),
+    content: `Right now there is no Content.
+      I will add it soon`
   },
   {
     key: '2',
     title: 'Contact Us',
-    iconSource: require('../../assets/contacts.png')
+    iconSource: require('../../assets/contacts.png'),
+    content: `Right now there is no Content.
+      I will add it soon`
   },
   {
     key: '3',
     title: 'App-Credits',
-    iconSource: require('../../assets/credits.png')
+    iconSource: require('../../assets/credits.png'),
+    content: `Right now there is no Content.
+      I will add it soon`
   }
 ];
 
@@ -27,7 +33,7 @@ class AboutUsContent extends Component {
     return (
       <Card containerStyle={styles.cardContainerStyle}>
           <Text style={styles.titleStyle}>{item.title}</Text>
-          <Text style={{ fontSize: 15 }}>Rishi</Text>
+          <Text style={{ fontSize: 15, alignSelf: 'center' }}>{item.content}</Text>
             <Image
               source={item.iconSource}
               style={styles.iconStyle}

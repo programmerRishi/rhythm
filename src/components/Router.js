@@ -2,7 +2,9 @@ import { SwitchNavigator, TabNavigator, StackNavigator } from 'react-navigation'
 import { Dimensions } from 'react-native';
 import { stackNavigationOptions } from './stackNavigatorNavigationOptions';
 import { tabNavigationOptions } from './tabNavigatorNavigationOptions';
-import { LoginPage, ConsoleScreen, CulturalEventDetails } from './index';
+import LoginPage from './LoginPage';
+import ConsoleScreen from './Console';
+import { CulturalEventDetails } from './index';
 import { StartUpScreen, Home, Cultural, Sports, About, FunActs } from '../screens';
 
 const SwitchRouterAuth = SwitchNavigator(
@@ -19,9 +21,9 @@ const SwitchRouterAuth = SwitchNavigator(
 
 const StackRouterHome = StackNavigator(
   {
-    homeStack: {
-      screen: Home,
-    },
+    // homeStack: {
+    //   screen: Home,
+    // },
     auth: {
       screen: SwitchRouterAuth
     }

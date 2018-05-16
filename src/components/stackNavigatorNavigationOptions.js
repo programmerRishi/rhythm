@@ -15,9 +15,10 @@ const stackNavigationOptions = ({ navigation }) => {
           title: title[routeName],
           headerTitleStyle: {
             color: '#fff',
-            fontSize: 20,
             textAlign: 'center',
+            fontSize: 25,
             fontFamily: 'KalamRegular',
+            fontWeight: 'normal', // add this to support custom font
             flex: 1
           },
           headerRight: <View />,

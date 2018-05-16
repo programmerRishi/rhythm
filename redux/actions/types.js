@@ -1,0 +1,9 @@
+export const LOGIN_UPDATE = 'login_update';
+export const LOGIN_USER_SUCCESS = 'login_user_success';
+export const LOGIN_USER_FAILED = 'login_user_failed';
+export const LOGIN_USER = 'login_user';
+export const CREATE_USER = 'create_user';
+export const CREATE_USER_SUCCESS = 'create_user_success';
+export const RESET_LOGIN = 'reset_login';
+export const SIGNOUT = 'signout';
+export const SIGNOUT_SUCCESSFULL = 'signout_successfull';

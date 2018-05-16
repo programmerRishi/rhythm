@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { List, Card, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actions';
+import { CustomModal } from './CustomModal';
 
 const data = [
   { key: '1', eventName: 'volleyball' },
@@ -8,7 +11,7 @@ const data = [
 ];
 
 class ConsoleScreen extends Component {
-  static navigationOptions = () => (
+  static navigationOptions = ({ navigation }) => (
     {
       title: 'Console',
       headerTitleStyle: {
@@ -25,6 +28,7 @@ class ConsoleScreen extends Component {
           type='font-awesome'
           raised
           size={20}
+          onPress={() => navigation.state.params.signOut({ navigation })}
         />
       ),
       headerStyle: {
@@ -33,11 +37,15 @@ class ConsoleScreen extends Component {
     }
   );
 
+  componentDidMount() {
+    this.props.navigation.setParams({ signOut: this.props.signOut });
+  }
   keyExtractor = (item) => item.key
 
   renderItem = ({ item }) => {
     const { cardContainerStyle, wrapperStyle, textStyle } = styles;
     return (
+      <View>
           <Card
             containerStyle={cardContainerStyle}
             wrapperStyle={wrapperStyle}
@@ -54,6 +62,11 @@ class ConsoleScreen extends Component {
               onPress={() => console.log(item.key)}
             />
           </Card>
+          <CustomModal
+            modalMessage='Logging Out'
+            showModal
+          />
+      </View>    
     );
   }
   render() {
@@ -86,4 +99,10 @@ const styles = {
       alignItems: 'center'
     }
 };
-export { ConsoleScreen };
+
+const mapStateToProps = ({ logIn }) => {
+  const { showModal } = logIn;
+  return { showModal };
+};
+
+export default connect(mapStateToProps, actions)(ConsoleScreen);

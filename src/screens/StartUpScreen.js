@@ -4,6 +4,7 @@ import {
   FlatList,
   Dimensions,
   ActivityIndicator } from 'react-native';
+import { LinearGradient } from 'expo';
 import { Card, Icon, Text } from 'react-native-elements';
 
 const sponsers = [
