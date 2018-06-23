@@ -7,7 +7,9 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './redux/reducers';
 import Router from './src/components/Router';
 
-export default class App extends React.Component {
+console.disableYellowBox = true;
+
+class App extends React.Component {
   state = { isReady: false };
 
   componentWillMount() {
@@ -59,3 +61,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;

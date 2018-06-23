@@ -27,21 +27,25 @@ export const signOut = ({ navigation }) => {
       dispatch({ type: SIGNOUT, payload: 'Logging Out' });
       await firebase.auth().signOut();
       dispatch({ type: SIGNOUT_SUCCESSFULL });
-      navigation.navigate('auth');
+      navigation.navigate('homeStack');
   };
 };
 
 export const loginOrganiser = (email, password, navigation) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(() => {
-      dispatch({ type: LOGIN_USER_SUCCESS });
-      navigation.navigate('console');
-      console.log('success');
-    })
-    .catch(() => {
-      dispatch({ type: LOGIN_USER_FAILED, payload: 'AUTHENTICATION FAILED!' });
-    });
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => {
+        return (
+          firebase.auth().signInWithEmailAndPassword(email, password)
+          .then(() => {
+            dispatch({ type: LOGIN_USER_SUCCESS });
+            navigation.navigate('console');
+          })
+        );
+      })
+      .catch((error) => {
+         dispatch({ type: LOGIN_USER_FAILED, payload: error });
+      });
   };
 };

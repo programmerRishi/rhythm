@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, Dimensions } from 'react-native';
+import { View, FlatList, Dimensions } from 'react-native';
 import { Card } from 'react-native-elements';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actions';
 
 const upcomingEvents = [
   {
@@ -35,6 +37,7 @@ const sponsers = [
 const { width } = Dimensions.get('window');
 
 class HomeContent extends Component {
+
   keyExtractor = (item) => item.key
 
   renderRecentEvents = ({ item }) => {
@@ -54,7 +57,9 @@ class HomeContent extends Component {
       />
     );
   }
+
   render() {
+    console.log(this.props.data);
     return (
       <View style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
@@ -90,4 +95,8 @@ const styles = {
           marginRight: 10
         }
       };
-export { HomeContent };
+
+const mapStateToProps = ({ dataBase }) => {
+  return { data: dataBase.data };
+};
+export default connect(mapStateToProps, actions)(HomeContent);

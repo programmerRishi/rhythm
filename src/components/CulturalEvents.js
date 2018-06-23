@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { TouchableOpacity, Text, FlatList } from 'react-native';
 import { Card } from 'react-native-elements';
 

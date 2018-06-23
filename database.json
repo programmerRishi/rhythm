@@ -1,0 +1,100 @@
+  "rhythm": {
+    "cultural": {
+      "singing": {
+        "EqHGcejpUVfZHLFrnbEqpK0qX4h2": {
+          "solo": {
+            "name": "rishi"
+          },
+          "duet": {
+            "name": "rishi"
+          },
+          "group": {
+            "name": "rishi"
+          }
+        }
+      },
+      "dance": {
+        "RdnyTFm8hjWkvb8skqGPwwhzRPb2": {
+          "solo": {
+            "name": "rishi"
+          },
+          "duet": {
+            "name": "rishi"
+          },
+          "group": {
+            "name": "rishi"
+          },
+          "mugga": {
+            "name": "karan singh"
+          },
+          "saraswatiPooja": {
+            "name": "dance"
+          }
+        }
+      },
+      "skit": {
+        "J2GhdPJulHWWeRFXl48rOrjoOC03": {
+          "2015": "murga bhi kabhi chooza tha",
+          "2016": "pata nahi",
+          "2015": "Mr & Mrs. Sarabhai"
+        }
+      },
+      "kaviSamellan": {
+        "Xt0dCLl9dIMREfetR7UJgifgLXy1": {
+          "poets": ""
+      },
+      "documentary": {
+        "uid": {
+          "2015": "",
+          "2016": ""
+        }
+      },
+      "fashionShow": {
+        "33ShxI6NaAYs2sVp8WN38aEnS7H2": {
+          "participants": ["rishi", "sharma"]
+        }
+      }
+    },
+    "sports": {
+      "volleyball": {
+        "Zy7qDG9Ff8NGlLhk5Q7tL43EOcz1": {
+          "matches": ""
+        }
+      },
+      "football": {
+        "zXVbhWAWbHUHDvohSRCCwc8TWFG3": {
+          "matches": ""
+        }
+      },
+      "cricket": {
+        "s0negMHYiXSTwcjyC18Jj4x3x333": {
+          "matches": ""
+        }
+      },
+      "badminton": {
+        "zzUlEc2QC4Xbz1JHSZxrPoWUc703": {
+          "matches": ""
+        }
+      },
+      "chess": {
+        "83JZKjHi2KQUrizuBy9FNVpiobk2": {
+          "matches": ""
+        }
+      },
+      "carrom": {
+        "QZdCjA6JBDfDEJYFowuqclefnrE3": {
+          "matches": ""
+        }
+      },
+      "kabaddi": {
+        "Qs5Lkbl56ldl7awaz9L35KsHNd93": {
+          "matches": ""
+        }
+      },
+      "athletics": {
+        "oMf4UkEQAnZ2fWuNGj6U6vdTpfh1": {
+          "matches": ""
+        }
+      },
+    }
+  }

@@ -5,7 +5,8 @@ import { tabNavigationOptions } from './tabNavigatorNavigationOptions';
 import LoginPage from './LoginPage';
 import ConsoleScreen from './Console';
 import { CulturalEventDetails } from './index';
-import { StartUpScreen, Home, Cultural, Sports, About, FunActs } from '../screens';
+import { Home, Cultural, Sports, About, FunActs } from '../screens';
+import StartUpScreen from '../screens/StartUpScreen';
 
 const SwitchRouterAuth = SwitchNavigator(
   {
@@ -21,9 +22,9 @@ const SwitchRouterAuth = SwitchNavigator(
 
 const StackRouterHome = StackNavigator(
   {
-    // homeStack: {
-    //   screen: Home,
-    // },
+    homeStack: {
+      screen: Home,
+    },
     auth: {
       screen: SwitchRouterAuth
     }

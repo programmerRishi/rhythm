@@ -7,3 +7,4 @@ export const CREATE_USER_SUCCESS = 'create_user_success';
 export const RESET_LOGIN = 'reset_login';
 export const SIGNOUT = 'signout';
 export const SIGNOUT_SUCCESSFULL = 'signout_successfull';
+export const DATA_SAVE_SUCCESS = 'data_save_success';

@@ -3,18 +3,24 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
-  ActivityIndicator } from 'react-native';
+  ActivityIndicator,
+  LayoutAnimation,
+  UIManager } from 'react-native';
 import {
   FormLabel,
   FormValidationMessage,
   FormInput,
   Card,
-  Button } from 'react-native-elements';
+  Button,
+  Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
 
+  UIManager.setLayoutAnimationEnabledExperimental
+    && UIManager.setLayoutAnimationEnabledExperimental(true);
+
 class LoginPage extends Component {
-  static navigationOptions = () => (
+  static navigationOptions = (props) => (
     {
         title: 'Organiser Login',
         headerTitleStyle: {
@@ -25,7 +31,23 @@ class LoginPage extends Component {
           fontFamily: 'KalamRegular',
           flex: 1
         },
-        headerBackImage: require('../../assets/arrow_back_white.png'),
+        headerLeft: (
+          <View style={{ paddingLeft: 7 }}>
+            <Icon
+            name='arrow-back'
+            color='#fff'
+            // textstyle={{ paddinTop: 5, paddingBottom: 5, paddingLeft: 5, paddingRight: 5 }}
+            // extraButtonStyle={{ marginTop: 5, marginBottom: 5 }}
+            onPress={() => {
+              // use this line for using components props in navigationOptions
+              Keyboard.dismiss();
+              props.navigation.state.params.resetLogin();
+              props.navigation.navigate('homeStack');
+            }
+            }
+            />
+          </View>
+        ),
         headerRight: <View />,
         headerStyle: {
           backgroundColor: '#242424'
@@ -33,6 +55,24 @@ class LoginPage extends Component {
     }
   );
 
+  state = { eyeIconName: 'eye', hidePassword: true, top: 15 };
+  componentWillMount() {
+    this.props.navigation.setParams(
+      {
+        resetLogin: this.props.resetLogin
+      }
+    );
+  }
+  componentWillUpdate() {
+      // console.log(LayoutAnimation);// see the Presets property
+      LayoutAnimation.configureNext(
+        {
+          duration: 150,
+          create: { type: 'linear', property: 'opacity' },
+          update: { type: 'linear' }
+        }
+      );
+  }
   onSignInButtonPress = () => {
     const { email, password, navigation } = this.props;
     this.props.loginOrganiser(email, password, navigation);
@@ -61,31 +101,73 @@ class LoginPage extends Component {
       />
     );
   }
+
+  showError = () => {
+    if (this.props.error.length >= 13) {
+      // this code below in the if section is for the error to animated in and out of the screen
+      setTimeout(() => this.setState({ top: -30 }), 1000);
+      setTimeout(() => { this.props.resetLogin(); this.setState({ top: 15 }); }, 1200);
+      return (
+        <FormValidationMessage
+          labelStyle={{ fontFamily: 'KalamRegular', fontSize: 18, textAlign: 'center' }}
+          containerStyle={{ position: 'absolute', top: this.state.top, elevation: 5 }}
+        >
+        {this.props.error}
+        </FormValidationMessage>
+      );
+    }
+    return (
+      //for stacking elements on top use elevation instead of zIndex
+      <FormValidationMessage
+        labelStyle={{ fontFamily: 'KalamRegular', fontSize: 18, textAlign: 'center' }}
+        containerStyle={{ position: 'absolute', top: -30, elevation: 5 }}
+      >
+      {this.props.error}
+      </FormValidationMessage>
+    );
+  }
+
   render() {
     const { viewContainerStyle, cardContainerStyle, wrapperStyle, labelStyle } = styles;
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           <View style={viewContainerStyle}>
+            {this.showError()}
             <Card containerStyle={cardContainerStyle} wrapperStyle={wrapperStyle}>
+                <Icon
+                  type='font-awesome'
+                  name={this.state.eyeIconName}
+                  size={25}
+                  containerStyle={styles.eyeIconStyle}
+                  onPress={
+                    () => {
+                      const eyeIconName = this.state.eyeIconName;
+                      eyeIconName === 'eye' ? this.setState({ eyeIconName: 'eye-slash', hidePassword: false }) : this.setState({ eyeIconName: 'eye', hidePassword: true });
+                    }
+                  }
+                />
                 <FormLabel labelStyle={labelStyle}>
                     Email
                 </FormLabel>
                 <FormInput
+                  containerStyle={{ width: 300 }}
                   inputStyle={styles.inputStyle}
                   autoFocus
                   onChangeText={(text) => this.props.loginUpdate({ prop: 'email', value: text })}
                   onSubmitEditing={() => this.password.focus()}
+                  value={this.props.email}
                 />
                 <FormLabel labelStyle={labelStyle}>
                     Password
                 </FormLabel>
                 <FormInput
+                  containerStyle={{ width: 270 }}
                   inputStyle={styles.inputStyle}
-                  secureTextEntry
+                  secureTextEntry={this.state.hidePassword}
                   ref={(password) => (this.password = password)}
                   onChangeText={(text) => this.props.loginUpdate({ prop: 'password', value: text })}
+                  value={this.props.password}
                 />
-                <FormValidationMessage>{''}</FormValidationMessage>
                 {this.onLoading()}
             </Card>
           </View>
@@ -112,6 +194,11 @@ const styles = {
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
+    eyeIconStyle: {
+      position: 'absolute',
+      top: 135,
+      right: 10
+    }
 };
 
 const mapStateToProps = ({ logIn }) => {

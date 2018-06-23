@@ -21,7 +21,7 @@ const CustomModal = (props) => {
           </View>
           <View style={modalViewStyle}>
             <ActivityIndicator
-            color='#e67e22dd'
+            color='#000'
             size={spinnerSize}
             />
           </View>
@@ -31,13 +31,13 @@ const CustomModal = (props) => {
 
 const styles = {
   modalViewStyle: {
-    borderWidth: 2,
+    borderWidth: 0,
     flexDirection: 'row',
     flex: 1,
     position: 'relative',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    backgroundColor: 'rgba(241, 191, 142, 0.75)'
+    backgroundColor: 'rgba(255,255,255,0.6)'
   },
    modalTextStyle: {
      flex: 1,
@@ -45,7 +45,7 @@ const styles = {
      lineHeight: 100,
      fontSize: 40,
      fontFamily: 'KalamRegular',
-     color: '#fff'
+     color: '#000'
    }
 };
 

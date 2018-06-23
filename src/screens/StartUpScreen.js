@@ -4,8 +4,9 @@ import {
   FlatList,
   Dimensions,
   ActivityIndicator } from 'react-native';
-import { LinearGradient } from 'expo';
 import { Card, Icon, Text } from 'react-native-elements';
+import { connect } from 'react-redux';
+import * as actions from '../../redux/actions';
 
 const sponsers = [
   { key: '1', name: 'Sponser 1' },
@@ -15,6 +16,12 @@ const sponsers = [
 
 const { height } = Dimensions.get('window');
 class StartUpScreen extends Component {
+  async componentWillMount() {
+    const response = await fetch('https://us-central1-rhythm-56cb4.cloudfunctions.net/trimDatabase');
+    const data = await response.json();
+    this.props.saveData(data);
+  }
+
   keyExtractor = (item) => item.key
 
   renderSponsersList = ({ item }) => {
@@ -94,5 +101,6 @@ const styles = {
           alignSelf: 'center',
           fontFamily: 'JosefinSans-SemiBold'
         }
-      };
-export { StartUpScreen };
+};
+
+export default connect(null, actions)(StartUpScreen);
