@@ -6,6 +6,7 @@ import ReduxThunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './redux/reducers';
 import Router from './src/components/Router';
+import firebaseConfig from './firebaseConfig';
 
 console.disableYellowBox = true;
 
@@ -13,16 +14,7 @@ class App extends React.Component {
   state = { isReady: false };
 
   componentWillMount() {
-    const config =
-    {
-      apiKey: 'AIzaSyC3BGw1JwEJ1iLjHOc9zsRZd-yvWZZIBqk',
-      authDomain: 'rhythm-56cb4.firebaseapp.com',
-      databaseURL: 'https://rhythm-56cb4.firebaseio.com',
-      projectId: 'rhythm-56cb4',
-      storageBucket: 'rhythm-56cb4.appspot.com',
-      messagingSenderId: '47282619908'
-    };
-    firebase.initializeApp(config);
+    firebase.initializeApp(firebaseConfig);
   }
 
   async LoadFont() {

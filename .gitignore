@@ -3,3 +3,4 @@ node_modules/**/*
 npm-debug.*
 functions/node_modules
 functions/service-account.json
+firebaseConfig.js
